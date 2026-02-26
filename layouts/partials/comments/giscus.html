@@ -1,0 +1,30 @@
+<script>
+  let themeNumber = localStorage.getItem('wcTheme');
+  var giscusTheme = "light";
+  if (themeNumber == 1){
+    giscusTheme = "dark";
+  }
+  let giscusAttributes = {
+    "src": "https://giscus.app/client.js",
+    "data-theme": giscusTheme,
+    "data-repo":"{{ .Site.Params.features.comment.giscus.repo }}",
+    "data-repo-id":"{{ .Site.Params.features.comment.giscus.repo_id }}",
+    "data-category":"{{ .Site.Params.features.comment.giscus.category }}",
+    "data-category-id":"{{ .Site.Params.features.comment.giscus.category_id }}",
+    "data-mapping":"pathname",
+    "data-reactions-enabled":"{{ .Site.Params.features.comment.giscus.reactions_enabled }}",
+    "data-emit-metadata":"0",
+    "data-input-position":"top",
+    "data-theme":giscusTheme,
+    "data-lang":"zh-CN",
+    "data-loading":"{{ .Site.Params.features.comment.giscus.loading }}",
+    "crossorigin":"{{ .Site.Params.features.comment.giscus.crossorigin }}",
+    "origins":"https://cloudnativecn.com",
+    "originsRegex":"http://localhost:[0-9]+",
+    "async": "",
+  };
+
+  let giscusScript = document.createElement("script");
+  Object.entries(giscusAttributes).forEach(([key, value]) => giscusScript.setAttribute(key, value));
+  document.querySelector('#comments').appendChild(giscusScript);
+</script>
